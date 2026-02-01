@@ -72,34 +72,42 @@ export const DataEntry = () => {
     setTotals(calculateTotals());
   };
 
+  const updateTotals = () => {
+    setTotals(calculateTotals());
+  };
+
   const handleAddOtherIncome = () => {
     setOtherIncomes([...otherIncomes, { id: generateId(), name: '', amount: 0 }]);
+    updateTotals();
   };
 
   const handleRemoveOtherIncome = (id: string) => {
     setOtherIncomes(otherIncomes.filter((item) => item.id !== id));
+    updateTotals();
   };
 
   const handleOtherIncomeChange = (id: string, field: keyof IncomeItem, value: string | number) => {
     setOtherIncomes(
       otherIncomes.map((item) => (item.id === id ? { ...item, [field]: value } : item))
     );
-    setTimeout(() => setTotals(calculateTotals()), 0);
+    setTotals(calculateTotals());
   };
 
   const handleAddOtherExpense = () => {
     setOtherExpenses([...otherExpenses, { id: generateId(), name: '', amount: 0 }]);
+    updateTotals();
   };
 
   const handleRemoveOtherExpense = (id: string) => {
     setOtherExpenses(otherExpenses.filter((item) => item.id !== id));
+    updateTotals();
   };
 
   const handleOtherExpenseChange = (id: string, field: keyof ExpenseItem, value: string | number) => {
     setOtherExpenses(
       otherExpenses.map((item) => (item.id === id ? { ...item, [field]: value } : item))
     );
-    setTimeout(() => setTotals(calculateTotals()), 0);
+    setTotals(calculateTotals());
   };
 
   const handleSubmit = async () => {
