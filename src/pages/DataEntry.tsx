@@ -144,8 +144,8 @@ export const DataEntry = () => {
     <div style={{ padding: '24px', maxWidth: '1000px', margin: '0 auto' }}>
       <h1 style={{ marginBottom: 24 }}>每月盘点</h1>
 
-      <Card title="收入" style={{ marginBottom: 16 }}>
-        <Form form={form} onValuesChange={onValuesChange} layout="vertical">
+      <Form form={form} onValuesChange={onValuesChange} layout="vertical">
+        <Card title="收入" style={{ marginBottom: 16 }}>
           <Row gutter={16}>
             <Col span={8}>
               <Form.Item label="年份" name="year">
@@ -216,112 +216,100 @@ export const DataEntry = () => {
           <div style={{ fontSize: '16px', fontWeight: 'bold' }}>
             总收入：¥{totals.totalIncome.toFixed(2)}
           </div>
-        </Form>
-      </Card>
+        </Card>
 
-      <Card title="支出" style={{ marginBottom: 16 }}>
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item label="还贷款（元）" name="loanRepayment" initialValue={0}>
-              <InputNumber style={{ width: '100%' }} min={0} />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Card title="支出" style={{ marginBottom: 16 }}>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item label="还贷款（元）" name="loanRepayment" initialValue={0}>
+                <InputNumber style={{ width: '100%' }} min={0} />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Form.Item label="其他支出">
-          {otherExpenses.map((item) => (
-            <Space key={item.id} style={{ marginBottom: 8, display: 'flex' }} align="baseline">
-              <Input
-                placeholder="名称"
-                value={item.name}
-                onChange={(e) => handleOtherExpenseChange(item.id, 'name', e.target.value)}
-                style={{ width: 150 }}
-              />
-              <InputNumber
-                placeholder="金额"
-                value={item.amount}
-                onChange={(value) => handleOtherExpenseChange(item.id, 'amount', value || 0)}
-                style={{ width: 120 }}
-                min={0}
-              />
-              <Button type="text" danger icon={<DeleteOutlined />} onClick={() => handleRemoveOtherExpense(item.id)} />
-            </Space>
-          ))}
-          <Button type="dashed" onClick={handleAddOtherExpense} icon={<PlusOutlined />}>
-            添加其他支出
-          </Button>
-        </Form.Item>
+          <Form.Item label="其他支出">
+            {otherExpenses.map((item) => (
+              <Space key={item.id} style={{ marginBottom: 8, display: 'flex' }} align="baseline">
+                <Input
+                  placeholder="名称"
+                  value={item.name}
+                  onChange={(e) => handleOtherExpenseChange(item.id, 'name', e.target.value)}
+                  style={{ width: 150 }}
+                />
+                <InputNumber
+                  placeholder="金额"
+                  value={item.amount}
+                  onChange={(value) => handleOtherExpenseChange(item.id, 'amount', value || 0)}
+                  style={{ width: 120 }}
+                  min={0}
+                />
+                <Button type="text" danger icon={<DeleteOutlined />} onClick={() => handleRemoveOtherExpense(item.id)} />
+              </Space>
+            ))}
+            <Button type="dashed" onClick={handleAddOtherExpense} icon={<PlusOutlined />}>
+              添加其他支出
+            </Button>
+          </Form.Item>
 
-        <div style={{ fontSize: '16px', fontWeight: 'bold' }}>
-          总支出：¥{totals.totalExpense.toFixed(2)}
-        </div>
+          <div style={{ fontSize: '16px', fontWeight: 'bold' }}>
+            总支出：¥{totals.totalExpense.toFixed(2)}
+          </div>
 
-        <div style={{ marginTop: 16, fontSize: '16px', fontWeight: 'bold' }}>
-          净储蓄：¥{totals.netSavings.toFixed(2)}
-        </div>
-      </Card>
+          <div style={{ marginTop: 16, fontSize: '16px', fontWeight: 'bold' }}>
+            净储蓄：¥{totals.netSavings.toFixed(2)}
+          </div>
+        </Card>
 
-      <Card title="净储蓄分配" style={{ marginBottom: 16 }}>
-        <Row gutter={16}>
-          <Col span={8}>
-            <Form form={form} layout="vertical">
+        <Card title="净储蓄分配" style={{ marginBottom: 16 }}>
+          <Row gutter={16}>
+            <Col span={8}>
               <Form.Item label="新增存款（元）" name="newDeposit" initialValue={0}>
                 <InputNumber style={{ width: '100%' }} min={0} />
               </Form.Item>
-            </Form>
-          </Col>
-          <Col span={8}>
-            <Form form={form} layout="vertical">
+            </Col>
+            <Col span={8}>
               <Form.Item label="个人养老金（元）" name="pensionContribution" initialValue={0}>
                 <InputNumber style={{ width: '100%' }} min={0} />
               </Form.Item>
-            </Form>
-          </Col>
-          <Col span={8}>
-            <Form form={form} layout="vertical">
+            </Col>
+            <Col span={8}>
               <Form.Item label="投资本金（元）" name="investmentPrincipal" initialValue={0}>
                 <InputNumber style={{ width: '100%' }} min={0} />
               </Form.Item>
-            </Form>
-          </Col>
-        </Row>
-      </Card>
+            </Col>
+          </Row>
+        </Card>
 
-      <Card title="投资收益" style={{ marginBottom: 16 }}>
-        <Form form={form} layout="vertical">
+        <Card title="投资收益" style={{ marginBottom: 16 }}>
           <Form.Item label="当月投资收益（元）" name="investmentReturn" initialValue={0}>
             <InputNumber style={{ width: '100%' }} />
           </Form.Item>
-        </Form>
-      </Card>
+        </Card>
 
-      <Card title="贷款" style={{ marginBottom: 16 }}>
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form form={form} layout="vertical">
+        <Card title="贷款" style={{ marginBottom: 16 }}>
+          <Row gutter={16}>
+            <Col span={12}>
               <Form.Item label="本月还款（元）" name="monthlyLoanPayment" initialValue={0}>
                 <InputNumber style={{ width: '100%' }} min={0} />
               </Form.Item>
-            </Form>
-          </Col>
-          <Col span={12}>
-            <Form form={form} layout="vertical">
+            </Col>
+            <Col span={12}>
               <Form.Item label="贷款余额（元）" name="loanBalance" initialValue={0}>
                 <InputNumber style={{ width: '100%' }} min={0} />
               </Form.Item>
-            </Form>
-          </Col>
-        </Row>
-      </Card>
+            </Col>
+          </Row>
+        </Card>
 
-      <div style={{ textAlign: 'right' }}>
-        <Space>
-          <Button onClick={handleCancel}>取消</Button>
-          <Button type="primary" onClick={handleSubmit}>
-            保存
-          </Button>
-        </Space>
-      </div>
+        <div style={{ textAlign: 'right' }}>
+          <Space>
+            <Button onClick={handleCancel}>取消</Button>
+            <Button type="primary" onClick={handleSubmit}>
+              保存
+            </Button>
+          </Space>
+        </div>
+      </Form>
     </div>
   );
 };
