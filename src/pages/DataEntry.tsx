@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Card, Row, Col, Select, DatePicker, InputNumber, Space, Modal, message } from 'antd';
+import { useState, useEffect } from 'react';
+import { Form, Input, Button, Card, Row, Col, Select, InputNumber, Space, message } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import dayjs from 'dayjs';
 import { useData } from '../contexts/DataContext';
 import { calculateTotalIncome, calculateTotalExpense, generateId } from '../utils/format';
 import type { IncomeItem, ExpenseItem } from '../types';
@@ -223,11 +222,9 @@ export const DataEntry = () => {
       <Card title="支出" style={{ marginBottom: 16 }}>
         <Row gutter={16}>
           <Col span={12}>
-            <Form form={form} layout="vertical">
-              <Form.Item label="还贷款（元）" name="loanRepayment" initialValue={0}>
-                <InputNumber style={{ width: '100%' }} min={0} />
-              </Form.Item>
-            </Form>
+            <Form.Item label="还贷款（元）" name="loanRepayment" initialValue={0}>
+              <InputNumber style={{ width: '100%' }} min={0} />
+            </Form.Item>
           </Col>
         </Row>
 
